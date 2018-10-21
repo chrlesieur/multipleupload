@@ -29,16 +29,14 @@
     </form>
 
     <?php
-    $it = new FilesystemIterator('../uploaded/'); // pour lister les fichiers dans le dossier upload
-    //$it ressort le nom de l'image
-    var_dump($it);
-    foreach ($it as $fileinfo) :?>
+    $files = scandir('uploaded');
+    foreach ($files as $file) :?>
             <div class="img-thumbnail">
-                <img src="../uploaded/<?=$it?>" height="352" width="470">
+                <img src="/uploaded/<?=$file?>" height="352" width="470">
                  <div>
-                     <h3><?=$it?></h3>
+                     <h3><?=$file?></h3>
                      <form action="" method="post" role="form">
-                        <input type="hidden"  name="deleteImage" value="<?=$it?>" >
+                        <input type="hidden"  name="deleteImage" value="<?=$file?>" >
                         <input type="submit" class="btn-danger" name="delete" value="delete">
                      </form>
                  </div>
@@ -47,7 +45,7 @@
 </div>
 
 <?php
-$file_destination = '../uploaded/';
+$file_destination = 'uploaded';
 if(isset($_POST['deleteImage'])){
     unlink($file_destination.$_POST['deleteImage']);
 

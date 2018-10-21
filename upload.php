@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $fileName = 'image' . uniqid() . '.' . $ext;
 
                     //save the url and the file
-                    $filePath = "../uploaded/" . $fileName;
+                    $filePath = "uploaded/" . $fileName;
                 }
 
                 //Upload the file into the temp dir
