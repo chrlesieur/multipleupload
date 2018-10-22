@@ -30,7 +30,11 @@
 
     <?php
     $files = scandir('uploaded');
-    foreach ($files as $file) :?>
+
+    foreach ($files as $file) :
+        if ($file !== '.' && $file !== '..') {?>
+
+
             <div class="img-thumbnail">
                 <img src="/uploaded/<?=$file?>" height="352" width="470">
                  <div>
@@ -41,11 +45,15 @@
                      </form>
                  </div>
              </div>
-<?php endforeach?>
+
+            <?php
+    }
+    endforeach;
+    ?>
 </div>
 
 <?php
-$file_destination = 'uploaded';
+$file_destination = 'uploaded/';
 if(isset($_POST['deleteImage'])){
     unlink($file_destination.$_POST['deleteImage']);
 
